@@ -41,25 +41,22 @@ try:
         print(title.text)
         # price = vacancy.find_element(By.CLASS_NAME, "search-price")
         # print(price.text)
-        # deadline = vacancy.find_element(By.CLASS_NAME, "term")
         posted_time = vacancy.find_element(By.CLASS_NAME, "search-meta")
         print(posted_time.text)
-        # Old code
-        # views = vacancy.find_element(By.XPATH, "//span[@title='Просмотров']")
-        # views = vacancy.find_element(By.CLASS_NAME, "view-count")
-        # Old code
-        # applied = vacancy.find_element(By.XPATH, "//span[@title='Отклики']")
         applied = vacancy.find_element(By.CLASS_NAME, "search-answer")
         print(applied.text)
 
+        if "/" in title.text:
+            title = title.text.replace('/', '')
+
         # for each vacancy it creates a new text file and write down information in it
-        # with open(file=title.text, mode="w", encoding='utf8') as file:
-        #     file.write(f"{title.text}\n")
-        #     file.write(f"Price: {price.text}\n")
-        #     # file.write(f"{deadline.text}\n")
-        #     file.write(f"Posted: {posted_time.text}\n")
-        #     # file.write(f"{views.text}\n")
-        #     file.write(f"{applied.text}\n")
+        with open(file=title, mode="w", encoding='utf8') as file:
+            file.write(f"{title.text}\n")
+            # file.write(f"Price: {price.text}\n")
+            # file.write(f"{deadline.text}\n")
+            file.write(f"Posted: {posted_time.text}\n")
+            # file.write(f"{views.text}\n")
+            file.write(f"{applied.text}\n")
 
 except Exception as ex:
     print(ex)
